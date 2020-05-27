@@ -25,6 +25,13 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Covid-19 Tracker Mastek</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+           navigator.serviceWorker
+              .register('./serviceWorker.js')
+              .then(function() { console.log('Service Worker Registered'); });
+      }
+  </script>
   </head>
   <body style="background-color:black">
     <noscript>You need to enable JavaScript to run this app.</noscript>

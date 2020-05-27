@@ -32,7 +32,8 @@ export function register(config) {
     }
 
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/serviceWorker.js')
+      navigator.serviceWorker.register('./serviceWorker.js')
+      
             .then(reg => {
                 console.log('Registration succeeded. Scope is ' + reg.scope);
             })
