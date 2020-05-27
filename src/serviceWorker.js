@@ -40,7 +40,7 @@ export function register(config) {
             .catch(registrationError => {
                 console.log('SW registration failed: ', registrationError);
             });
-      const swUrl = `${process.env.PUBLIC_URL}/serviceWorker.js`;
+      const swUrl = `./serviceWorker.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
