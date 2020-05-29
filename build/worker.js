@@ -1,11 +1,12 @@
 const CACHE_NAME = 'covid-19-live-tracker';
 const urlsToCache = [
-  '/',
-  '/completed'
+  'index.html',
+ 
 ];
 
 // Install a service worker
 self.addEventListener('install', event => {
+  console.log('service worker installed')
   // Perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -16,23 +17,10 @@ self.addEventListener('install', event => {
   );
 });
 
-// Cache and return requests
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
-  );
-});
 
 // Update a service worker
 self.addEventListener('activate', event => {
+  console.log('service worker activated')
   const cacheWhitelist = ['covid-19-live-tracker'];
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -47,11 +35,13 @@ self.addEventListener('activate', event => {
   );
 });
 
-self.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent the mini-infobar from appearing on mobile
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI notify the user they can install the PWA
-  showInstallPromotion();
+
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    fetch(event.request).catch(function() {
+      return caches.match(event.request);
+    })
+  );
 });
+
