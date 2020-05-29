@@ -5,7 +5,7 @@ const urlsToCache = [
 ];
 
 // Install a service worker
-window.addEventListener('install', event => {
+self.addEventListener('install', event => {
   console.log('service worker installed')
   // Perform install steps
   event.waitUntil(
@@ -19,7 +19,7 @@ window.addEventListener('install', event => {
 
 
 // Update a service worker
-window.addEventListener('activate', event => {
+self.addEventListener('activate', event => {
   console.log('service worker activated')
   const cacheWhitelist = ['covid-19-live-tracker'];
   event.waitUntil(
@@ -37,7 +37,7 @@ window.addEventListener('activate', event => {
 
 
 
-window.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function(event) {
   event.respondWith(
     fetch(event.request).catch(function() {
       return caches.match(event.request);
