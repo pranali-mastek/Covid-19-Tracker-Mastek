@@ -1,6 +1,8 @@
 const CACHE_NAME = 'covid-19-live-tracker';
 const urlsToCache = [
+  '/',
   'index.html',
+  
  
 ];
 
