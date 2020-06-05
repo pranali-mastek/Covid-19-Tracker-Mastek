@@ -1,6 +1,9 @@
 const CACHE_NAME = 'covid-19-live-tracker';
 const urlsToCache = [
-  'index.html',
+  '/',
+  ' https://corona.lmao.ninja/v2/all',
+  ' https://corona.lmao.ninja/v2/countries',
+  'index.html'
  
 ];
 
